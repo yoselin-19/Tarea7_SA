@@ -1,0 +1,19 @@
+version: "3.7"
+
+services:
+    app:
+        build: ./NODEJS/
+        container_name: app
+        ports:
+           - 3000:3000
+        volumes: 
+            - type: bind
+              source: ./dist
+              target: /api/dist
+        command: gulp zip_tarea        
+        networks: 
+            - tarea
+
+networks:
+    tarea:
+        driver: bridge
