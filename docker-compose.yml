@@ -6,12 +6,18 @@ services:
         container_name: app
         ports:
            - 3000:3000
-        volumes: 
+        volumes:
             - type: bind
               source: ./dist
               target: /api/dist
-        command: gulp zip_tarea        
-        networks: 
+            - type: bind
+              source: ./NODEJS/api
+              target: /copia
+        environment:
+          - NODE_UID=${NODE_UID}
+          - NODE_GID=${NODE_GID}
+        command: npm start
+        networks:
             - tarea
 
 networks:
